@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TitleBar">
+        <attr name="tbImage" format="reference" />
+        <attr name="tbText" format="string" />
+        <attr name="tbRightText" format="string" />
+        <attr name="tbLeftText" format="string" />
+        <attr name="tbTextColor" format="color" />
+        <attr name="tbTopPadding" format="boolean" />
+        <attr name="tbRightImage" format="reference"/>
+    </declare-styleable>
+</resources>
