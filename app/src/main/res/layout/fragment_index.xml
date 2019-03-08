@@ -16,7 +16,7 @@
             app:tbText="首页"
             app:tbLeftText="北京"
             app:tbImage="@mipmap/dawn"
-            app:tbTextColor="@android:color/black"
+            app:tbTextColor="@color/theme_text_color"
             app:tbRightImage="@mipmap/search"
             />
 

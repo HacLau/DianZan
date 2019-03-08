@@ -4,12 +4,23 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.mine.mishi.mishi.R;
+import com.mine.mishi.mishi.adapter.NewsInterfaceAdapter;
 import com.mine.mishi.mishi.base.BaseFragment;
+import com.mine.mishi.mishi.base.Contants;
+import com.mine.mishi.mishi.entity.NewsInterfaceEntity;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,8 +40,9 @@ public class ThirdFragment extends BaseFragment {
     private String mParam1;
     private String mParam2;
 
+    List<NewsInterfaceEntity> data = new ArrayList<>();
     private OnFragmentInteractionListener mListener;
-
+    private RecyclerView recyclerView;
     public ThirdFragment() {
         // Required empty public constructor
     }
@@ -66,7 +78,33 @@ public class ThirdFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_third, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_third, container, false);
+
+        initView(view);
+        return view;
+    }
+
+    private void initView( View view) {
+        recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+        //使用瀑布流布局,第一个参数 spanCount 列数,第二个参数 orentation 排列方向
+        StaggeredGridLayoutManager recyclerViewLayoutManager =
+                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        //线性布局Manager
+//        LinearLayoutManager recyclerViewLayoutManager = new LinearLayoutManager(this);
+//        recyclerViewLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        //网络布局Manager
+//        GridLayoutManager recyclerViewLayoutManager = new GridLayoutManager(this, 3);
+        //给recyclerView设置LayoutManager
+        recyclerView.setLayoutManager(recyclerViewLayoutManager);
+        initData();
+        NewsInterfaceAdapter adapter = new NewsInterfaceAdapter(data, this.getContext());
+        //设置adapter
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void initData() {
+       data = Contants.newsEntityList;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -106,5 +144,10 @@ public class ThirdFragment extends BaseFragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void getMessage(String message){
+        //mModel.refreshData();
     }
 }

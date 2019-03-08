@@ -7,9 +7,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/theme_bg"
-    android:fitsSystemWindows="true"
+    android:background="@color/theme_interface_bg"
     tools:context=".activity.LoginActivity">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/theme_title_bg"/>
     <ImageView
         android:id="@+id/login_close"
         android:layout_width="32dp"
@@ -37,36 +40,43 @@
     <EditText
         android:id="@+id/login_user_mobile"
         android:layout_below="@id/login_notice"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@color/text_color_white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/login_user_ver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:background="@color/text_color_white"
         android:layout_below="@id/login_user_mobile"
         >
         <EditText
             android:id="@+id/login_ver"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            />
-        <TextView
-            android:id="@+id/login_get_ver"
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:background="@null"
+            />
+
+        <TextView
+            android:id="@+id/login_get_ver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:text="获取验证码"
-            android:layout_marginRight="5dp"/>
-    </RelativeLayout>
+            android:layout_centerVertical="true"
+            android:text="获取验证码" />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/login_agree"
         android:layout_width="match_parent"
@@ -101,6 +111,8 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_below="@id/login_agree"
+        android:background="@color/theme_title_bg"
+        android:textColor="@color/theme_text_color"
         android:text="立即加入"/>
     <ImageView
         android:id="@+id/login_three"

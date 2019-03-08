@@ -2,9 +2,11 @@ package com.mine.mishi.mishi.base;
 
 
 import com.mine.mishi.mishi.R;
-import com.mine.mishi.mishi.bean.CitySearchResultEntty;
-import com.mine.mishi.mishi.bean.IndexSubEntity;
-import com.mine.mishi.mishi.bean.SecondSubEntity;
+import com.mine.mishi.mishi.entity.CitySearchResultEntty;
+import com.mine.mishi.mishi.entity.IndexSubEntity;
+import com.mine.mishi.mishi.entity.MineMenuEntity;
+import com.mine.mishi.mishi.entity.NewsInterfaceEntity;
+import com.mine.mishi.mishi.entity.SecondSubEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +28,16 @@ public class Contants {
             add("欧美");
         }
     };
+
+    public static final List<String> mineTitleList = new ArrayList<String>() {
+        {
+            add("我的笔记");
+            add("我的收藏");
+        }
+    };
     public static final List<String> tabSecondTitleList = new ArrayList<String>() {
         {
             add("全部");
-            add("网红");
         }
     };
     public static final List<IndexSubEntity> indexEntityList = new ArrayList<IndexSubEntity>(){
@@ -37,28 +45,66 @@ public class Contants {
             IndexSubEntity beauty;
             for(int i = 0;i< 10;i++) {
                 //String imageDesc, String imageIcon, String name, String headIcon, String likeNumber, String likeIcon
-                beauty = new IndexSubEntity("刘亦菲" + i, "http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb622c7ad.jpg", "刘顺林" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                beauty = new IndexSubEntity("幸福其实真的很简单：有人爱;有事做;有所期待。" + i, "http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb622c7ad.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
                 add(beauty);
-                beauty = new IndexSubEntity("刘亦菲" + i, "http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb5ec036f.jpg", "刘顺林" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                beauty = new IndexSubEntity("刘亦菲专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意" + i, "http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb5ec036f.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
                 add(beauty);
-                beauty = new IndexSubEntity("刘亦菲" + i, "http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb63e8117.jpg", "刘顺林" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                beauty = new IndexSubEntity("刘亦菲" + i, "http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb63e8117.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
                 add(beauty);
-                beauty = new IndexSubEntity("刘亦菲" + i, "http://wx4.sinaimg.cn/large/7eff5f4dgy1ffe5b3bcg3j21hc0u0k0d.jpg", "刘顺林" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                beauty = new IndexSubEntity("幸福其实真的很简单：有人爱;有事做;有所期待。专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意" + i, "http://wx4.sinaimg.cn/large/7eff5f4dgy1ffe5b3bcg3j21hc0u0k0d.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
                 add(beauty);
-                beauty = new IndexSubEntity("刘亦菲" + i, "http://pic1.win4000.com/mobile/2019-01-08/5c346332dae71.jpg", "刘顺林" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                beauty = new IndexSubEntity("刘亦菲" + i, "http://pic1.win4000.com/mobile/2019-01-08/5c346332dae71.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
                 add(beauty);
-                beauty = new IndexSubEntity("刘亦菲" + i, "http://wx2.sinaimg.cn/large/7eff5f4dgy1ffe5cmngkbj21hc0xcq5j.jpg", "刘顺林" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                beauty = new IndexSubEntity("刘亦菲专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意" + i, "http://wx2.sinaimg.cn/large/7eff5f4dgy1ffe5cmngkbj21hc0xcq5j.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
                 add(beauty);
-                beauty = new IndexSubEntity("刘亦菲" + i, "http://i0.article.fd.zol-img.com.cn/g5/M00/0D/0C/ChMkJlltpyeIN1l-AADUwKg_3ZwAAeycAHhuRwAANTY206.jpg", "刘顺林" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                beauty = new IndexSubEntity("幸福其实真的很简单：有人爱;有事做;有所期待。" + i, "http://i0.article.fd.zol-img.com.cn/g5/M00/0D/0C/ChMkJlltpyeIN1l-AADUwKg_3ZwAAeycAHhuRwAANTY206.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
                 add(beauty);
-                beauty = new IndexSubEntity("刘亦菲" + i, "http://wx2.sinaimg.cn/large/7eff5f4dgy1ffe5cnknkrj21hc0xcacd.jpg", "刘顺林" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                beauty = new IndexSubEntity("刘亦菲" + i, "http://wx2.sinaimg.cn/large/7eff5f4dgy1ffe5cnknkrj21hc0xcacd.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
                 add(beauty);
-                beauty = new IndexSubEntity("刘亦菲" + i, "http://uploadfile.bizhizu.cn/2014/0226/20140226042643224.jpg.source.jpg", "刘顺林" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                beauty = new IndexSubEntity("刘亦菲" + i, "http://uploadfile.bizhizu.cn/2014/0226/20140226042643224.jpg.source.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
                 add(beauty);
-                beauty = new IndexSubEntity("刘亦菲" + i, "http://b-ssl.duitang.com/uploads/item/201412/19/20141219132442_JTuSj.jpeg", "刘顺林" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                beauty = new IndexSubEntity("幸福其实真的很简单：有人爱;有事做;有所期待。" + i, "http://b-ssl.duitang.com/uploads/item/201412/19/20141219132442_JTuSj.jpeg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
                 add(beauty);
-                beauty = new IndexSubEntity("刘亦菲" + i, "http://pic1.win4000.com/mobile/2018-01-13/5a59b24ea2f44.jpg", "刘顺林" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                beauty = new IndexSubEntity("刘亦菲" + i, "http://pic1.win4000.com/mobile/2018-01-13/5a59b24ea2f44.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
                 add(beauty);
+                beauty = new IndexSubEntity("刘亦菲" + i, "http://pic1.win4000.com/mobile/2018-01-13/5a59b24ea2f44.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                add(beauty);
+
+            }
+        }
+
+    };
+
+    public static final List<IndexSubEntity> indexEntityList1 = new ArrayList<IndexSubEntity>(){
+        {
+            IndexSubEntity beauty;
+            for(int i = 0;i< 10;i++) {
+                beauty = new IndexSubEntity("刘亦菲" + i, "http://uploadfile.bizhizu.cn/2014/0226/20140226042643224.jpg.source.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                add(beauty);
+                beauty = new IndexSubEntity("幸福其实真的很简单：有人爱;有事做;有所期待。" + i, "http://b-ssl.duitang.com/uploads/item/201412/19/20141219132442_JTuSj.jpeg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                add(beauty);
+                beauty = new IndexSubEntity("刘亦菲" + i, "http://pic1.win4000.com/mobile/2018-01-13/5a59b24ea2f44.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                add(beauty);
+                beauty = new IndexSubEntity("刘亦菲" + i, "http://pic1.win4000.com/mobile/2018-01-13/5a59b24ea2f44.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                add(beauty);
+                //String imageDesc, String imageIcon, String name, String headIcon, String likeNumber, String likeIcon
+                beauty = new IndexSubEntity("幸福其实真的很简单：有人爱;有事做;有所期待。" + i, "http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb622c7ad.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                add(beauty);
+                beauty = new IndexSubEntity("刘亦菲专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意" + i, "http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb5ec036f.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                add(beauty);
+                beauty = new IndexSubEntity("刘亦菲" + i, "http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb63e8117.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                add(beauty);
+                beauty = new IndexSubEntity("幸福其实真的很简单：有人爱;有事做;有所期待。专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意" + i, "http://wx4.sinaimg.cn/large/7eff5f4dgy1ffe5b3bcg3j21hc0u0k0d.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                add(beauty);
+                beauty = new IndexSubEntity("刘亦菲" + i, "http://pic1.win4000.com/mobile/2019-01-08/5c346332dae71.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                add(beauty);
+                beauty = new IndexSubEntity("刘亦菲专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意" + i, "http://wx2.sinaimg.cn/large/7eff5f4dgy1ffe5cmngkbj21hc0xcq5j.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                add(beauty);
+                beauty = new IndexSubEntity("幸福其实真的很简单：有人爱;有事做;有所期待。" + i, "http://i0.article.fd.zol-img.com.cn/g5/M00/0D/0C/ChMkJlltpyeIN1l-AADUwKg_3ZwAAeycAHhuRwAANTY206.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                add(beauty);
+                beauty = new IndexSubEntity("刘亦菲" + i, "http://wx2.sinaimg.cn/large/7eff5f4dgy1ffe5cnknkrj21hc0xcacd.jpg", "XXXXXXX" + i, R.mipmap.ic_launcher + "", "12" + i, R.mipmap.ic_launcher + "");
+                add(beauty);
+
 
             }
         }
@@ -178,5 +224,58 @@ public class Contants {
             add(new CitySearchResultEntty("","重庆"));
         }
     };
+
+
+    public static final List<NewsInterfaceEntity> newsEntityList = new ArrayList<NewsInterfaceEntity>(){
+        {
+            NewsInterfaceEntity beauty;
+            for (int i = 0; i < 10; i++) {
+                //String imageDesc, String imageIcon, String name, String headIcon, String likeNumber, String likeIcon
+                beauty = new NewsInterfaceEntity("http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb622c7ad.jpg","百度大佬","专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意。","http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb622c7ad.jpg","今天");
+                add(beauty);
+                beauty = new NewsInterfaceEntity("http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb5ec036f.jpg","百度大佬","专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意。","http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb622c7ad.jpg","今天");
+                add(beauty);
+                beauty = new NewsInterfaceEntity( "http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb63e8117.jpg","百度大佬","专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意。","http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb622c7ad.jpg","今天");
+                add(beauty);
+                beauty = new NewsInterfaceEntity("http://wx4.sinaimg.cn/large/7eff5f4dgy1ffe5b3bcg3j21hc0u0k0d.jpg","百度大佬","专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意。","http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb622c7ad.jpg","今天");
+                add(beauty);
+                beauty = new NewsInterfaceEntity("http://pic1.win4000.com/mobile/2019-01-08/5c346332dae71.jpg","百度大佬","专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意。","http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb622c7ad.jpg","今天");
+                add(beauty);
+                beauty = new NewsInterfaceEntity( "http://wx2.sinaimg.cn/large/7eff5f4dgy1ffe5cmngkbj21hc0xcq5j.jpg","百度大佬","专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意。","http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb622c7ad.jpg","今天");
+                add(beauty);
+                beauty = new NewsInterfaceEntity("http://i0.article.fd.zol-img.com.cn/g5/M00/0D/0C/ChMkJlltpyeIN1l-AADUwKg_3ZwAAeycAHhuRwAANTY206.jpg","百度大佬","专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意。","http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb622c7ad.jpg","今天");
+                add(beauty);
+                beauty = new NewsInterfaceEntity( "http://wx2.sinaimg.cn/large/7eff5f4dgy1ffe5cnknkrj21hc0xcacd.jpg","百度大佬","专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意。","http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb622c7ad.jpg","昨天");
+                add(beauty);
+                beauty = new NewsInterfaceEntity("http://uploadfile.bizhizu.cn/2014/0226/20140226042643224.jpg.source.jpg","百度大佬","专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意。","http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb622c7ad.jpg","昨天");
+                add(beauty);
+                beauty = new NewsInterfaceEntity("http://b-ssl.duitang.com/uploads/item/201412/19/20141219132442_JTuSj.jpeg","百度大佬","专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意。","http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb622c7ad.jpg","昨天");
+                add(beauty);
+                beauty = new NewsInterfaceEntity("http://pic1.win4000.com/mobile/2018-01-13/5a59b24ea2f44.jpg","百度大佬","专一不是一辈子只喜欢一个人，而是喜欢一个人的时候一心一意。","http://pic1.win4000.com/wallpaper/2017-12-19/5a38bb622c7ad.jpg","前天");
+                add(beauty);
+
+
+            }
+        }
+    };
+
+    public static final List<MineMenuEntity> mineEntityList = new ArrayList<MineMenuEntity>(){
+        {
+            add(new MineMenuEntity(R.mipmap.ic_launcher,"我的蜂蜜"));
+            add(new MineMenuEntity(R.mipmap.ic_launcher,"我的订单"));
+            add(new MineMenuEntity(R.mipmap.ic_launcher,"邀请有礼"));
+        }
+    };
+
+    public static final List<String> orderTitleList = new ArrayList<String>() {
+        {
+            add("全部订单");
+            add("待评价");
+            add("待使用");
+            add("退款中");
+        }
+    };
+
+
 
 }

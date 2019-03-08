@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.mine.mishi.mishi.R;
-import com.mine.mishi.mishi.bean.IndexSubEntity;
+import com.mine.mishi.mishi.entity.IndexSubEntity;
 
 import java.util.List;
 
@@ -33,9 +34,20 @@ public class IndexSubAdapter extends RecyclerView.Adapter<IndexSubAdapter.Beauty
      */
     private List<IndexSubEntity> data;
 
+    public void setData(List<IndexSubEntity> data) {
+        this.data = data;
+        notifyDataSetChanged();
+    }
+
     public IndexSubAdapter(List<IndexSubEntity> data, Context context) {
         this.data = data;
         this.mContext = context;
+    }
+
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -46,7 +58,7 @@ public class IndexSubAdapter extends RecyclerView.Adapter<IndexSubAdapter.Beauty
     }
 
     @Override
-    public void onBindViewHolder(final BeautyViewHolder holder, int position) {
+    public void onBindViewHolder(final BeautyViewHolder holder, final int position) {
         //将数据设置到item上
         IndexSubEntity beauty = data.get(position);
         //holder.beautyImage.setBackgroundResource(beauty.getImageIcon());
@@ -105,6 +117,14 @@ public class IndexSubAdapter extends RecyclerView.Adapter<IndexSubAdapter.Beauty
         holder.nameTv.setText(beauty.getIamagedesc());
         holder.personName.setText(beauty.getName());
         holder.likeNumber.setText(beauty.getLikeNumber());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClickListener(position);
+                }
+            }
+        });
 
     }
 
@@ -123,6 +143,8 @@ public class IndexSubAdapter extends RecyclerView.Adapter<IndexSubAdapter.Beauty
         ImageView likeIcon;
         TextView likeNumber;
 
+        CardView cardView;
+
         public BeautyViewHolder(View itemView) {
             super(itemView);
             beautyImage = itemView.findViewById(R.id.image_address);
@@ -133,6 +155,12 @@ public class IndexSubAdapter extends RecyclerView.Adapter<IndexSubAdapter.Beauty
 
             likeIcon = itemView.findViewById(R.id.like_icon);
             likeNumber = itemView.findViewById(R.id.like_number);
+
+            cardView = itemView.findViewById(R.id.card_view);
         }
+    }
+
+    public interface OnItemClickListener{
+        public boolean onItemClickListener(int position);
     }
 }

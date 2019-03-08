@@ -6,15 +6,20 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.mine.mishi.mishi.R;
+import com.mine.mishi.mishi.activity.NotesDetailActivity;
 import com.mine.mishi.mishi.adapter.IndexSubAdapter;
 import com.mine.mishi.mishi.base.BaseFragment;
 import com.mine.mishi.mishi.base.Contants;
-import com.mine.mishi.mishi.bean.IndexSubEntity;
+import com.mine.mishi.mishi.entity.IndexSubEntity;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +90,13 @@ public class IndexSubFragment extends BaseFragment {
         recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
         //使用瀑布流布局,第一个参数 spanCount 列数,第二个参数 orentation 排列方向
         StaggeredGridLayoutManager recyclerViewLayoutManager =
-                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)/*{
+                    @Override
+                    public boolean canScrollVertically() {
+                        // 直接禁止垂直滑动
+                        return false;
+                    }
+                }*/;
         //线性布局Manager
 //        LinearLayoutManager recyclerViewLayoutManager = new LinearLayoutManager(this);
 //        recyclerViewLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -95,8 +106,17 @@ public class IndexSubFragment extends BaseFragment {
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
         data = Contants.indexEntityList;
         IndexSubAdapter adapter = new IndexSubAdapter(data, this.getContext());
+
         //设置adapter
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new IndexSubAdapter.OnItemClickListener() {
+            @Override
+            public boolean onItemClickListener(int position) {
+                Log.e("position:",position + "");
+                gotoActivity(getActivity(), NotesDetailActivity.class,null);
+                return false;
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -139,6 +159,11 @@ public class IndexSubFragment extends BaseFragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void getMessage(String message){
+        //mModel.refreshData();
     }
 
 

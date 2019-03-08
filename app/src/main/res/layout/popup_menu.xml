@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#e0ffffff"
     android:orientation="vertical">
@@ -10,45 +10,47 @@
 
     <ImageView
         android:id="@+id/top_image"
-        android:layout_marginTop="30dip"
-        android:layout_marginLeft="10dip"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ad4"/>
+        android:src="@mipmap/ad4"
+        android:visibility="gone"/>
     <TextView
-        android:layout_marginTop="20dip"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/top_image"
-        android:layout_marginLeft="30dip"
+        android:layout_marginLeft="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#333333"
         android:lineSpacingMultiplier="1.5"
-        android:text="如果不是相互喜欢\n你的痴情就是别人的负担"/>
+        android:text="如果不是相互喜欢\n你的痴情就是别人的负担"
+        android:visibility="gone"/>
 
     <LinearLayout
+        android:layout_above="@id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="25dip"
-        android:layout_marginRight="25dip"
+        android:layout_height="wrap_content"
         android:gravity="bottom"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/test1"
-            android:layout_width="0dip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="210dip"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
-                android:layout_width="50dip"
-                android:layout_height="50dip"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@mipmap/img1" />
 
             <TextView
-                android:layout_marginTop="10dip"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="说说"
@@ -58,21 +60,20 @@
 
         <LinearLayout
             android:id="@+id/test2"
-            android:layout_width="0dip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="210dip"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
 
 
             <ImageView
-                android:layout_width="50dip"
-                android:layout_height="50dip"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@mipmap/img2" />
 
             <TextView
-                android:layout_marginTop="10dip"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="照片"
@@ -82,21 +83,21 @@
 
         <LinearLayout
             android:id="@+id/test3"
-            android:layout_width="0dip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="210dip"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
 
             <ImageView
-                android:layout_width="50dip"
-                android:layout_height="50dip"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@mipmap/img3" />
 
             <TextView
-                android:layout_marginTop="10dip"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="视频"
@@ -106,20 +107,19 @@
 
         <LinearLayout
             android:id="@+id/test4"
-            android:layout_width="0dip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="210dip"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="50dip"
-                android:layout_height="50dip"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@mipmap/img4" />
 
             <TextView
-                android:layout_marginTop="10dip"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="直播"
@@ -133,27 +133,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="25dip"
-        android:layout_marginRight="25dip"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:gravity="bottom"
         android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/test5"
-            android:layout_width="0dip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="120dip"
+            android:layout_marginBottom="120dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
-                android:layout_width="50dip"
-                android:layout_height="50dip"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@mipmap/img5" />
 
             <TextView
-                android:layout_marginTop="10dip"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="乱搞"
@@ -163,21 +164,22 @@
 
         <LinearLayout
             android:id="@+id/test6"
-            android:layout_width="0dip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="120dip"
+            android:layout_marginBottom="120dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
 
             <ImageView
-                android:layout_width="50dip"
-                android:layout_height="50dip"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@mipmap/img6" />
 
             <TextView
-                android:layout_marginTop="10dip"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="动感照片"
@@ -187,21 +189,22 @@
 
         <LinearLayout
             android:id="@+id/test7"
-            android:layout_width="0dip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="120dip"
+            android:layout_marginBottom="120dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
 
             <ImageView
-                android:layout_width="50dip"
-                android:layout_height="50dip"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@mipmap/img7" />
 
             <TextView
-                android:layout_marginTop="10dip"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="日志"
@@ -211,20 +214,21 @@
 
         <LinearLayout
             android:id="@+id/test8"
-            android:layout_width="0dip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="120dip"
+            android:layout_marginBottom="120dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
-                android:layout_width="50dip"
-                android:layout_height="50dip"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@mipmap/img8" />
 
             <TextView
-                android:layout_marginTop="10dip"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="语音"
@@ -235,9 +239,10 @@
     </LinearLayout>
 
     <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        app:cardBackgroundColor="#ffffffff"
+        app:cardBackgroundColor="@color/theme_text_color"
         app:cardCornerRadius="32dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

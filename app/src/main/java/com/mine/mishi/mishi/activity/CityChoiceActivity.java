@@ -1,24 +1,26 @@
 package com.mine.mishi.mishi.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.mine.mishi.mishi.R;
 import com.mine.mishi.mishi.adapter.CitySearchAdapter;
-import com.mine.mishi.mishi.adapter.IndexSubAdapter;
+import com.mine.mishi.mishi.base.BaseActivity;
 import com.mine.mishi.mishi.base.Contants;
-import com.mine.mishi.mishi.bean.CitySearchResultEntty;
-import com.mine.mishi.mishi.utils.Utility;
+import com.mine.mishi.mishi.entity.CitySearchResultEntty;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CityChoiceActivity extends AppCompatActivity {
+public class CityChoiceActivity extends BaseActivity {
+    private static final String TAG = "CityChoiceActivity";
     private ImageView back;
     private RecyclerView history_city;
 
@@ -65,7 +67,13 @@ public class CityChoiceActivity extends AppCompatActivity {
         CitySearchAdapter adapter = new CitySearchAdapter(historyCity, this);
         //设置adapter
         history_city.setAdapter(adapter);
-
+        adapter.setOnItemClickListener(new CitySearchAdapter.OnItemClickListener() {
+            @Override
+            public boolean onItemClickListener(int position) {
+                Log.e("position:",position + "");
+                return false;
+            }
+        });
     }
 
 
@@ -80,6 +88,13 @@ public class CityChoiceActivity extends AppCompatActivity {
         CitySearchAdapter adapter = new CitySearchAdapter(hotCity, this);
 
         hot_city.setAdapter(adapter);
+        adapter.setOnItemClickListener(new CitySearchAdapter.OnItemClickListener() {
+            @Override
+            public boolean onItemClickListener(int position) {
+                Log.e("position:",position + "");
+                return false;
+            }
+        });
     }
 
     private void initAllCity() {
@@ -90,6 +105,18 @@ public class CityChoiceActivity extends AppCompatActivity {
         CitySearchAdapter adapter = new CitySearchAdapter(allCity, this);
         all_city.setNestedScrollingEnabled(false);
         all_city.setAdapter(adapter);
+        adapter.setOnItemClickListener(new CitySearchAdapter.OnItemClickListener() {
+            @Override
+            public boolean onItemClickListener(int position) {
+                Log.e("position:",position + "");
+                return false;
+            }
+        });
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void getMessage(String message){
+        Log.d(TAG,message);
     }
 
 

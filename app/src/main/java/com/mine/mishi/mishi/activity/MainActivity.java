@@ -108,6 +108,9 @@ public class MainActivity extends BaseActivity implements
         list.add(FourthFragment.newInstance("我的",""));
         viewPagerIndexAdapter.setList(list);
         mBinding.viewPager.setAdapter(viewPagerIndexAdapter);
+        mBinding.viewPager.setOffscreenPageLimit(3);
+        mBinding.mainIndex.setChecked(true);
+        mBinding.mainIndex.setTextColor(getResources().getColor(R.color.theme_text_color));
     }
 
     private void selectPage(int position, float positionOffset, int positionOffsetPixels) {
@@ -165,15 +168,31 @@ public class MainActivity extends BaseActivity implements
         switch (v.getId()) {
             case R.id.main_index:
                 mBinding.viewPager.setCurrentItem(0);
+                mBinding.mainIndex.setTextColor(getResources().getColor(R.color.theme_text_color));
+                mBinding.mainSecond.setTextColor(getResources().getColor(R.color.text_color_white));
+                mBinding.mainThird.setTextColor(getResources().getColor(R.color.text_color_white));
+                mBinding.mainFourth.setTextColor(getResources().getColor(R.color.text_color_white));
                 break;
             case R.id.main_second:
                 mBinding.viewPager.setCurrentItem(1);
+                mBinding.mainIndex.setTextColor(getResources().getColor(R.color.text_color_white));
+                mBinding.mainSecond.setTextColor(getResources().getColor(R.color.theme_text_color));
+                mBinding.mainThird.setTextColor(getResources().getColor(R.color.text_color_white));
+                mBinding.mainFourth.setTextColor(getResources().getColor(R.color.text_color_white));
                 break;
             case R.id.main_third:
                 mBinding.viewPager.setCurrentItem(2);
+                mBinding.mainIndex.setTextColor(getResources().getColor(R.color.text_color_white));
+                mBinding.mainSecond.setTextColor(getResources().getColor(R.color.text_color_white));
+                mBinding.mainThird.setTextColor(getResources().getColor(R.color.theme_text_color));
+                mBinding.mainFourth.setTextColor(getResources().getColor(R.color.text_color_white));
                 break;
             case R.id.main_fourth:
                 mBinding.viewPager.setCurrentItem(3);
+                mBinding.mainIndex.setTextColor(getResources().getColor(R.color.text_color_white));
+                mBinding.mainSecond.setTextColor(getResources().getColor(R.color.text_color_white));
+                mBinding.mainThird.setTextColor(getResources().getColor(R.color.text_color_white));
+                mBinding.mainFourth.setTextColor(getResources().getColor(R.color.theme_text_color));
                 break;
             case R.id.rl_click:
                 PopupMenuUtil.getInstance()._show(context, mBinding.ivImg);

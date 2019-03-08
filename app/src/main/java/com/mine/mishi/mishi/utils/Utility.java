@@ -27,20 +27,20 @@ public class Utility {
         SystemBarTintManager tintManager = new SystemBarTintManager((Activity) context);
         tintManager.setStatusBarTintEnabled(true);
         //这里设置自己需要改变通知栏的颜色
-        tintManager.setStatusBarTintResource(R.color.theme_bg);
+        tintManager.setStatusBarTintResource(R.color.theme_title_bg);
     }
 
     /**
      * 改变通知栏颜色
      */
-    public static void setActionBar(Context context,int black){
+    public static void setActionBar(Context context,int color){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(context, true);
         }
         SystemBarTintManager tintManager = new SystemBarTintManager((Activity) context);
         tintManager.setStatusBarTintEnabled(true);
         //这里设置自己需要改变通知栏的颜色
-        tintManager.setStatusBarTintResource(black);
+        tintManager.setStatusBarTintResource(color);
     }
 
     @TargetApi(19)

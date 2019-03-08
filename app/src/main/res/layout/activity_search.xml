@@ -5,26 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/theme_bg"
-    android:fitsSystemWindows="true"
+    android:background="@color/theme_interface_bg"
     tools:context="com.mine.mishi.mishi.activity.SearchActivity">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/theme_title_bg"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:paddingRight="15dp"
+        android:background="@color/theme_title_bg">
         <EditText
             android:id="@+id/search_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/cancel"
-            android:paddingLeft="25dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/text_color_white"
             android:layout_centerVertical="true"/>
         <ImageView
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:src="@mipmap/search"
-            android:layout_marginLeft="10sp"
+            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"/>
         <TextView
             android:id="@+id/cancel"
@@ -32,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:textColor="@color/theme_text_color"
             android:text="取消"/>
     </RelativeLayout>
     <LinearLayout

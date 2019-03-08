@@ -3,13 +3,18 @@ package com.mine.mishi.mishi.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.design.widget.TabLayout;
 
+import com.mine.mishi.mishi.HttpRequestLocal.HttpLogin;
+import com.mine.mishi.mishi.HttpRequestLocal.HttpSiscoveryH;
 import com.mine.mishi.mishi.R;
 import com.mine.mishi.mishi.activity.CityChoiceActivity;
 import com.mine.mishi.mishi.activity.SearchActivity;
@@ -17,14 +22,26 @@ import com.mine.mishi.mishi.adapter.TablayoutViewpagerAdapter;
 import com.mine.mishi.mishi.adapter.ViewPagerIndexAdapter;
 import com.mine.mishi.mishi.base.BaseFragment;
 import com.mine.mishi.mishi.base.Contants;
+import com.mine.mishi.mishi.bean.BaseRequest;
+import com.mine.mishi.mishi.bean.SiscoveryH;
+import com.mine.mishi.mishi.url.RetrofitLoader;
+import com.mine.mishi.mishi.utils.SharedPreferencesUtil;
 import com.mine.mishi.mishi.view.ChildViewPager;
 import com.mine.mishi.mishi.view.TitleBar;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import okhttp3.RequestBody;
+import rx.functions.Action1;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,6 +68,7 @@ public class IndexFragment extends BaseFragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TitleBar titleBar;
+    private View mView;
 
     public IndexFragment() {
         // Required empty public constructor
@@ -86,10 +104,19 @@ public class IndexFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_index, container, false);
-        initView(view);
-        return view;
+        mView = inflater.inflate(R.layout.fragment_index, container, false);
+        return mView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        initView(mView);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     private void initView(View view) {
@@ -249,6 +276,42 @@ public class IndexFragment extends BaseFragment {
     public void getMessage(String message){
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getData();
+    }
+
+    private List<SiscoveryH> data = new ArrayList<>();
+
+    private void getData() {
+        HttpSiscoveryH params = new HttpSiscoveryH();
+        params.setUserid(SharedPreferencesUtil.getInstance(getActivity()).getString("userid","0"));
+
+        RetrofitLoader mRetrofitLoader = new RetrofitLoader();
+
+        mRetrofitLoader.getSiscoveryH(params).subscribe(new Action1<BaseRequest<List<SiscoveryH>>>() {
+            @Override
+            public void call(BaseRequest<List<SiscoveryH>> listBaseRequest) {
+                if (200 == listBaseRequest.getCode() && listBaseRequest.isIsOk()) {
+                    data = listBaseRequest.getData();
+                    //adapter.notifyDataSetChanged();
+                    EventBus.getDefault().post(data);
+                }
+                Log.e("TAG","success message:" + listBaseRequest.toString());
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                Log.e("TAG","error message:" + throwable.getMessage());
+            }
+        });
+    }
+
+
+
+
 
 
 }

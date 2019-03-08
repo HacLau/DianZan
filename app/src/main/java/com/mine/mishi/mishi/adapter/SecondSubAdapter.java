@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.mine.mishi.mishi.R;
-import com.mine.mishi.mishi.bean.SecondSubEntity;
+import com.mine.mishi.mishi.bean.SiscoveryH;
 
 import java.util.List;
 
@@ -32,9 +33,18 @@ public class SecondSubAdapter extends RecyclerView.Adapter<SecondSubAdapter.Seco
     /**
      * 数据集合
      */
-    private List<SecondSubEntity> data;
+    private List<SiscoveryH> data;
+    private OnItemClickListener onItemClickListener;
 
-    public SecondSubAdapter(List<SecondSubEntity> data, Context context) {
+    public void setData(List<SiscoveryH> data) {
+        this.data = data;
+        notifyDataSetChanged();
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+    public SecondSubAdapter(List<SiscoveryH> data, Context context) {
         this.data = data;
         this.mContext = context;
     }
@@ -42,14 +52,14 @@ public class SecondSubAdapter extends RecyclerView.Adapter<SecondSubAdapter.Seco
     @Override
     public SecondSubViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //加载item 布局文件
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.second_sub_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_second_sub, parent, false);
         return new SecondSubViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final SecondSubViewHolder holder, int position) {
+    public void onBindViewHolder(final SecondSubViewHolder holder, final int position) {
         //将数据设置到item上
-        SecondSubEntity beauty = data.get(position);
+        final SiscoveryH beauty = data.get(position);
 
         /*Glide.with(mContext)
                 .load(beauty.getImgUrl())
@@ -59,7 +69,7 @@ public class SecondSubAdapter extends RecyclerView.Adapter<SecondSubAdapter.Seco
                 .into(holder.imageView);*/
 
         Glide.with(mContext)
-                .load(beauty.getImgUrl())
+                .load(beauty.getGoods_img())
                 .asBitmap()
                 .centerCrop()
                 .placeholder(R.mipmap.ic_launcher)
@@ -75,11 +85,19 @@ public class SecondSubAdapter extends RecyclerView.Adapter<SecondSubAdapter.Seco
                     }
                 });
 
-        holder.title.setText(beauty.getTitle());
-        holder.address.setText(beauty.getAddress());
-        holder.distance.setText(beauty.getDistance());
-        holder.sell_price.setText(beauty.getSellPrice());
-        holder.original_price.setText(beauty.getOriginalPrice());
+        holder.title.setText(beauty.getGoods_name());
+        holder.address.setText(beauty.getShop_addres());
+        holder.distance.setText(beauty.getShop_longitude());
+        holder.sell_price.setText(beauty.getCurve_price()+"");
+        holder.original_price.setText(beauty.getMarket_price()+"");
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClickListener(beauty);
+                }
+            }
+        });
 
     }
 
@@ -95,7 +113,7 @@ public class SecondSubAdapter extends RecyclerView.Adapter<SecondSubAdapter.Seco
         private TextView distance;
         private TextView sell_price;
         private TextView original_price;
-
+        CardView cardView;
         public SecondSubViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image);
@@ -105,7 +123,11 @@ public class SecondSubAdapter extends RecyclerView.Adapter<SecondSubAdapter.Seco
             sell_price = itemView.findViewById(R.id.sell_price);
             original_price = itemView.findViewById(R.id.original_price);
             original_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-
+            cardView = itemView.findViewById(R.id.card_view);
         }
+    }
+
+    public interface OnItemClickListener{
+        public boolean onItemClickListener(SiscoveryH beauty);
     }
 }

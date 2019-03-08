@@ -6,20 +6,34 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
 import com.mine.mishi.mishi.R;
-import com.mine.mishi.mishi.adapter.IndexSubAdapter;
+import com.mine.mishi.mishi.activity.GoodsDetailActivity;
 import com.mine.mishi.mishi.adapter.SecondSubAdapter;
 import com.mine.mishi.mishi.base.BaseFragment;
 import com.mine.mishi.mishi.base.Contants;
-import com.mine.mishi.mishi.bean.IndexSubEntity;
-import com.mine.mishi.mishi.bean.SecondSubEntity;
+import com.mine.mishi.mishi.bean.BaseRequest;
+import com.mine.mishi.mishi.bean.SiscoveryH;
+import com.mine.mishi.mishi.entity.SecondSubEntity;
+import com.mine.mishi.mishi.url.RetrofitLoader;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import okhttp3.RequestBody;
+import rx.functions.Action1;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,8 +52,9 @@ public class SecondSubFragment extends BaseFragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    List<SecondSubEntity> data = new ArrayList<>();
+    List<SiscoveryH> data = new ArrayList<>();
     private OnFragmentInteractionListener mListener;
+    private SecondSubAdapter adapter;
     private RecyclerView recyclerView;
     public SecondSubFragment() {
         // Required empty public constructor
@@ -81,6 +96,7 @@ public class SecondSubFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_second_sub, container, false);
 
         initView(view);
+        //initData();
         return view;
     }
 
@@ -96,25 +112,43 @@ public class SecondSubFragment extends BaseFragment {
 //        GridLayoutManager recyclerViewLayoutManager = new GridLayoutManager(this, 3);
         //给recyclerView设置LayoutManager
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
-        initData();
-        SecondSubAdapter adapter = new SecondSubAdapter(data, this.getContext());
+
+        adapter = new SecondSubAdapter(data, this.getContext());
         //设置adapter
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new SecondSubAdapter.OnItemClickListener() {
+            @Override
+            public boolean onItemClickListener(SiscoveryH bean) {
+                Bundle bundle = new Bundle();
+                int act_id = bean.getAct_id();
+                bundle.putInt("actId",act_id);
+                gotoActivity(getActivity(), GoodsDetailActivity.class,bundle);
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
     }
 
     private void initData() {
-        Bundle arguments = getArguments();
+        /*Bundle arguments = getArguments();
         int position = arguments.getInt("position");
         switch (position){
             case 0:
-                data = Contants.secondEntityList;
+                //data = Contants.secondEntityList;
                 break;
             case 1:
-                data = Contants.secondEntityList2;
+                //data = Contants.secondEntityList2;
                 break;
-        }
+        }*/
 
     }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -153,5 +187,18 @@ public class SecondSubFragment extends BaseFragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void getMessage(String message){
+        //mModel.refreshData();
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void getListMessage(List<SiscoveryH> data){
+
+        this.data = data;
+        adapter.setData(data);
+        //adapter.notifyDataSetChanged();
     }
 }

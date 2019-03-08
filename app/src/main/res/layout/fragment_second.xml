@@ -15,11 +15,10 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/theme_bg"
             app:tbText="探店"
             app:tbLeftText="北京"
             app:tbImage="@mipmap/dawn"
-            app:tbTextColor="@android:color/black"
+            app:tbTextColor="@color/theme_text_color"
             app:tbRightImage="@mipmap/search"
 
             />
@@ -42,6 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
+
+
 
 
 </FrameLayout>

@@ -6,20 +6,38 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mine.mishi.mishi.HttpRequestLocal.HttpSiscoveryH;
 import com.mine.mishi.mishi.R;
 import com.mine.mishi.mishi.activity.CityChoiceActivity;
+import com.mine.mishi.mishi.activity.GoodsDetailActivity;
 import com.mine.mishi.mishi.activity.SearchActivity;
 import com.mine.mishi.mishi.adapter.TablayoutViewpagerAdapter;
 import com.mine.mishi.mishi.base.BaseFragment;
 import com.mine.mishi.mishi.base.Contants;
+import com.mine.mishi.mishi.bean.BaseRequest;
+import com.mine.mishi.mishi.bean.SiscoveryH;
+import com.mine.mishi.mishi.url.RetrofitLoader;
+import com.mine.mishi.mishi.utils.SharedPreferencesUtil;
 import com.mine.mishi.mishi.view.TitleBar;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import okhttp3.RequestBody;
+import rx.functions.Action1;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +59,7 @@ public class SecondFragment extends BaseFragment {
 
     private OnFragmentInteractionListener mListener;
     private List<Fragment> fragments=new ArrayList<>();
-
+    private List<SiscoveryH> data = new ArrayList<>();
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TitleBar titleBar;
@@ -64,6 +82,7 @@ public class SecondFragment extends BaseFragment {
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -82,6 +101,7 @@ public class SecondFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_second, container, false);
         initView(view);
+        getData();
         return view;
     }
 
@@ -114,6 +134,47 @@ public class SecondFragment extends BaseFragment {
         });
         initViewPager();
         initTablayout();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    private void getData() {
+
+       /* JSONObject postdata = new JSONObject();
+
+        try {
+            postdata.put("userid","3");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        String json = postdata.toString();
+        // String json= new Gson().toJson(CommonUtil.getServiceParamsMap(CommonUtil.getHeaderParamsMap(transactionType),map));//要传递的json
+        RequestBody requestBody = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),json);*/
+        HttpSiscoveryH params = new HttpSiscoveryH();
+        params.setUserid(SharedPreferencesUtil.getInstance(getActivity()).getString("userid","0"));
+
+        RetrofitLoader mRetrofitLoader = new RetrofitLoader();
+
+        mRetrofitLoader.getSiscoveryH(params).subscribe(new Action1<BaseRequest<List<SiscoveryH>>>() {
+            @Override
+            public void call(BaseRequest<List<SiscoveryH>> listBaseRequest) {
+                if (200 == listBaseRequest.getCode() && listBaseRequest.isIsOk()) {
+                    data = listBaseRequest.getData();
+                    //adapter.notifyDataSetChanged();
+                    EventBus.getDefault().post(data);
+                }
+                //Log.e("TAG","success message:" + listBaseRequest.toString());
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                //Log.e("TAG","error message:" + throwable.getMessage());
+            }
+        });
     }
 
     private void goToSearch() {
@@ -239,5 +300,10 @@ public class SecondFragment extends BaseFragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void getMessage(String message){
+        //mModel.refreshData();
     }
 }

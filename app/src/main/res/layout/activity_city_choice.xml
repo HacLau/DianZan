@@ -5,12 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/theme_bg"
-    android:fitsSystemWindows="true"
+    android:background="@color/theme_interface_bg"
     tools:context="com.mine.mishi.mishi.activity.CityChoiceActivity">
+    <View
+    android:layout_width="match_parent"
+    android:layout_height="25dp"
+    android:background="@color/theme_title_bg"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:background="@color/theme_title_bg"
         >
         <ImageView
             android:id="@+id/back"
@@ -24,128 +28,130 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="城市选择"/>
+            android:text="城市选择"
+            android:textColor="@color/theme_text_color"/>
     </RelativeLayout>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@mipmap/map"/>
-        <TextView
-            android:layout_marginLeft="5dp"
-            android:textSize="14sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="北京"/>
-        <TextView
-            android:layout_marginLeft="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="11sp"
-            android:text="（当前定位）"/>
-
-    </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="历史访问城市"
-        android:textSize="11sp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/history_city"
+        android:scrollbars="none">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="热门城市"
-        android:textSize="11sp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:orientation="vertical"
-        android:gravity="center_vertical">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/hot_city"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@mipmap/map"/>
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="北京"/>
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:text="（当前定位）"/>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="历史访问城市"
+                android:textSize="11sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/history_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="热门城市"
+                android:textSize="11sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/hot_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
 
-    </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="全部城市"
-        android:textSize="11sp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="全部城市"
+                android:textSize="11sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/all_city"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="更多城市正在开拓中，敬请期待"
-        android:gravity="center"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"/>
-    </LinearLayout>
-</ScrollView>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/all_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="更多城市正在开拓中，敬请期待"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

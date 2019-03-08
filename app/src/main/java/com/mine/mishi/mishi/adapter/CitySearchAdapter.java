@@ -2,9 +2,9 @@ package com.mine.mishi.mishi.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Paint;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -17,8 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.mine.mishi.mishi.R;
-import com.mine.mishi.mishi.bean.CitySearchResultEntty;
-import com.mine.mishi.mishi.bean.SecondSubEntity;
+import com.mine.mishi.mishi.entity.CitySearchResultEntty;
 
 import java.util.List;
 
@@ -35,7 +34,11 @@ public class CitySearchAdapter extends RecyclerView.Adapter<CitySearchAdapter.Se
      * 数据集合
      */
     private List<CitySearchResultEntty> data;
+    private OnItemClickListener onItemClickListener;
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
     public CitySearchAdapter(List<CitySearchResultEntty> data, Context context) {
         this.data = data;
         this.mContext = context;
@@ -49,7 +52,7 @@ public class CitySearchAdapter extends RecyclerView.Adapter<CitySearchAdapter.Se
     }
 
     @Override
-    public void onBindViewHolder(final SecondSubViewHolder holder, int position) {
+    public void onBindViewHolder(final SecondSubViewHolder holder, final int position) {
         //将数据设置到item上
         CitySearchResultEntty beauty = data.get(position);
         if(!TextUtils.isEmpty(beauty.getImgUrl())) {
@@ -83,6 +86,15 @@ public class CitySearchAdapter extends RecyclerView.Adapter<CitySearchAdapter.Se
 
         holder.title.setText(beauty.getText());
 
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClickListener(position);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -93,11 +105,16 @@ public class CitySearchAdapter extends RecyclerView.Adapter<CitySearchAdapter.Se
     static class SecondSubViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageView;
         private TextView title;
-
+        CardView cardView;
         public SecondSubViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image);
             title = itemView.findViewById(R.id.title);
+            cardView = itemView.findViewById(R.id.card_view);
         }
+    }
+
+    public interface OnItemClickListener{
+        public boolean onItemClickListener(int position);
     }
 }

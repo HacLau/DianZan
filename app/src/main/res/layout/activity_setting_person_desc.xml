@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.mine.mishi.mishi.activity.SettingPersonDescActivity">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/theme_title_bg"/>
+    <com.mine.mishi.mishi.view.TitleBar
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tbText="设置个人说明"
+        app:tbLeftText="取消"
+        app:tbRightText="完成"
+        />
+
+    <TextView
+        android:id="@+id/desc_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:padding="15dp"
+        android:text="签名写得好，小伙伴不会少"
+        android:background="@color/theme_interface_bg"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="7"
+        android:gravity="start"
+        android:padding="15dp"
+        android:background="@color/text_color_white"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/theme_interface_bg"/>
+
+</LinearLayout>

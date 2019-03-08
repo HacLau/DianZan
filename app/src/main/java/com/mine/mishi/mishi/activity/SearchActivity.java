@@ -1,26 +1,28 @@
 package com.mine.mishi.mishi.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.mine.mishi.mishi.R;
 import com.mine.mishi.mishi.adapter.CitySearchAdapter;
 import com.mine.mishi.mishi.adapter.IndexSubAdapter;
+import com.mine.mishi.mishi.base.BaseActivity;
 import com.mine.mishi.mishi.base.Contants;
-import com.mine.mishi.mishi.bean.CitySearchResultEntty;
-import com.mine.mishi.mishi.bean.IndexSubEntity;
-import com.mine.mishi.mishi.utils.Utility;
+import com.mine.mishi.mishi.entity.CitySearchResultEntty;
+import com.mine.mishi.mishi.entity.IndexSubEntity;
 
-import org.w3c.dom.Text;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends BaseActivity {
+    private static final String TAG = "SearchActivity";
     private TextView cancel;
 
     private List<CitySearchResultEntty> currentKey = new ArrayList<>();
@@ -65,6 +67,13 @@ public class SearchActivity extends AppCompatActivity {
         CitySearchAdapter adapter = new CitySearchAdapter(currentKey, this);
         //设置adapter
         current_key.setAdapter(adapter);
+        adapter.setOnItemClickListener(new CitySearchAdapter.OnItemClickListener() {
+            @Override
+            public boolean onItemClickListener(int position) {
+                Log.e("position:",position + "");
+                return false;
+            }
+        });
     }
 
     private void initHotKey() {
@@ -76,6 +85,13 @@ public class SearchActivity extends AppCompatActivity {
         CitySearchAdapter adapter = new CitySearchAdapter(hotKey, this);
         //设置adapter
         hot_key.setAdapter(adapter);
+        adapter.setOnItemClickListener(new CitySearchAdapter.OnItemClickListener() {
+            @Override
+            public boolean onItemClickListener(int position) {
+                Log.e("position:",position + "");
+                return false;
+            }
+        });
     }
 
     private void initSearchResult() {
@@ -87,5 +103,17 @@ public class SearchActivity extends AppCompatActivity {
         IndexSubAdapter adapter = new IndexSubAdapter(searchResult, this);
         //设置adapter
         search_result.setAdapter(adapter);
+        adapter.setOnItemClickListener(new IndexSubAdapter.OnItemClickListener() {
+            @Override
+            public boolean onItemClickListener(int position) {
+                Log.e("position:",position + "");
+                return false;
+            }
+        });
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void getMessage(String message){
+        Log.d(TAG,message);
     }
 }
